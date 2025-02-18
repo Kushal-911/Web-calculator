@@ -1,4 +1,3 @@
-/* static/css/style.css */
 * {
     margin: 0;
     padding: 0;
@@ -110,6 +109,20 @@ footer {
     background-color: #e9ecef;
     color: #495057;
 }
+.convert-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.convert-btn:hover {
+    background-color: #45a049;
+}
 
 .mode-btn.active {
     background-color: #007bff;
@@ -130,8 +143,8 @@ footer {
     display: none;
 }
 .conversion-type {
-    width: 100%;  /* Add this to ensure full width */
-    margin-bottom: 0.5rem;  /* Add some spacing */
+    width: 100%;  
+    margin-bottom: 0.5rem; 
 }
 #scientific-pad.active {
     display: grid;
@@ -220,7 +233,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Ensure conversion panel doesn't affect calculator size */
 #conversion-panel {
     width: 100%;
 }
@@ -609,7 +621,6 @@ footer {
     color: #007bff;
 }
 
-/* Operation tracking controls */
 .tracking-controls {
     display: flex;
     gap: 0.5rem;
@@ -645,7 +656,61 @@ footer {
     cursor: not-allowed;
 }
 
-/* Responsive Design */
+
+/* Add to your style.css file */
+.export-controls {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.export-btn {
+    background-color: #1e88e5;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.export-btn:hover {
+    background-color: #1565c0;
+}
+
+.export-options {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+    margin-top: 5px;
+    width: fit-content;
+}
+
+.export-option {
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.export-option:hover {
+    background-color: #f5f5f5;
+}
+
+.hidden {
+    display: none;
+}
+
+
 @media (max-width: 1200px) {
     .calculator-container {
         grid-template-columns: 3fr 2fr;

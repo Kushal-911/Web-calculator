@@ -3,21 +3,20 @@ import re
 
 def evaluate(expression, calc_type='standard'):
     """Evaluates mathematical expressions"""
-    # Clean the expression
+    # some specific conventions define karne keliye ye hai
     expression = expression.replace('×', '*').replace('÷', '/')
     
     if calc_type == 'scientific':
-        # Handle scientific functions
         expression = handle_scientific_functions(expression)
     
-    # Safety check before eval
+    # expression validity checking keliye ye hai
     if not is_safe_expression(expression):
         raise ValueError("Invalid expression")
         
     return eval(expression)
 
 def handle_scientific_functions(expr):
-    """Replace scientific function names with their math module equivalents"""
+    """scientific function names change karke their math module equivalent compatibility meh change karna with math library"""
     replacements = {
         'sin': 'math.sin',
         'cos': 'math.cos',
@@ -41,7 +40,7 @@ def handle_scientific_functions(expr):
     for old, new in replacements.items():
         if old in expr:
             if old == '|x|':
-                # Special case for absolute value
+                # Special case for absolute value define karne keliye
                 expr = expr.replace('|x|(', 'abs(')
             else:
                 expr = expr.replace(old, new)
@@ -49,17 +48,15 @@ def handle_scientific_functions(expr):
     return expr
 
 def is_safe_expression(expr):
-    """Check if the expression is safe to evaluate"""
-    # Allow math functions and safe operations
+    """Check if the expression is safe to evaluate nhito execute nhi hoga"""
     if any(func in expr for func in ['math.', 'abs', 'factorial']):
         return True
     
-    # Only allow: numbers, basic operators, parentheses
+    # Only allow: numbers, basic operators, parentheses - basically ek operator check hai
     allowed_pattern = r'^[\d\s+\-*/().]+$'
     return bool(re.match(allowed_pattern, expr))
 
 def convert(value, from_unit, to_unit, conversion_type):
-    """Handles unit conversions"""
     conversions = {
         'length': {
             'm_to_ft': lambda x: x * 3.28084,
@@ -115,20 +112,15 @@ def convert(value, from_unit, to_unit, conversion_type):
         }
     }
     
-    # Get the conversion key
     conversion_key = f'{from_unit}_to_{to_unit}'
     
-    # Handle same units
     if from_unit == to_unit:
         return float(value)
     
-    # Look up the conversion
     if conversion_type in conversions and conversion_key in conversions[conversion_type]:
         return conversions[conversion_type][conversion_key](float(value))
     
-    # If direct conversion not found, try multi-step conversion
     if conversion_type == 'length':
-        # Convert to meters first, then to target unit
         if from_unit != 'm' and to_unit != 'm':
             value_in_m = conversions['length'][f'{from_unit}_to_m'](float(value))
             return conversions['length'][f'm_to_{to_unit}'](value_in_m)

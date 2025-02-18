@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 {% extends "base.html" %}
 
 {% block content %}
@@ -16,7 +15,6 @@
         </div>
 
         <div class="keypad-container">
-            <!-- Scientific Functions - Better Organized -->
             <div id="scientific-pad" class="hidden">
                 <div class="scientific-row">
                     <button class="btn function">sin</button>
@@ -97,11 +95,13 @@
                     <select id="to-unit" class="select-styled"></select>
                     <div id="result" class="conversion-result"></div>
                 </div>
+                <div class="conversion-controls">
+                    <button id="convert-button" class="btn convert-btn">Save to History</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Enhanced History Panel -->
     <div class="history-panel">
         <div class="history-header">
             <h3>Calculation History</h3>
