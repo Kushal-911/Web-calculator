@@ -210,6 +210,7 @@ class Calculator {  /// main calculator function
                                 <div><strong>Type:</strong> ${type}</div>
                                 <div><strong>Time:</strong> ${timestamp}</div>
                             </div>
+                            
                         </div>
                         
                         <div class="operation-steps">
@@ -222,7 +223,9 @@ class Calculator {  /// main calculator function
                                 <button class="tracking-btn next-btn">Next Step</button>
                             </div>
                         </div>
+                        
                     </div>
+                
                     
                     <div class="preview-section">
                         <h3>Calculator Preview</h3>
@@ -232,14 +235,15 @@ class Calculator {  /// main calculator function
                                 <!-- Step numbers will be shown here -->
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="export-controls">
-                        <button id="export-calculation-btn" class="export-btn">Export Calculation</button>
-                        <div id="export-options" class="export-options hidden">
-                            <button class="export-option" data-format="pdf">PDF</button>
-                            <button class="export-option" data-format="csv">CSV</button>
-                        </div>
+
+                        <div class="export-controls">
+                            <button id="export-calculation-btn" class="export-btn">Export Calculation</button>
+                            <div id="export-options" class="export-options hidden">
+                                <button class="export-option" data-format="pdf">PDF</button>
+                                <button class="export-option" data-format="csv">CSV</button>
+                            </div>
+                        </div>     
+
                     </div>
                 </div>
             </div>
@@ -406,14 +410,14 @@ class Calculator {  /// main calculator function
                         steps.push({
                             expression: currentPart,
                             result: runningResult,
-                            explanation: `Step 1: Calculate the initial expression`
+                            explanation: `Step 1: Initial expression`
                         });
                     } catch (e) {
                         console.error('Error calculating initial expression', e);
                         steps.push({
                             expression: currentPart,
                             result: 'Error',
-                            explanation: `Step 1: Calculate the initial expression`
+                            explanation: `Step 1: Initial expression`
                         });
                         break;
                     }

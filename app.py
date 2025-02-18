@@ -1,7 +1,3 @@
-from flask import Flask, render_template, request, jsonify
-from database import db, Calculation
-import calculator
-from config import Config
 from flask import Flask, render_template, request, jsonify, send_file
 from database import db, Calculation
 import calculator
@@ -13,6 +9,9 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
+from pathlib import Path
+
+Path('instance').mkdir(exist_ok=True)
 
 app = Flask(__name__)
 app.config.from_object(Config)
