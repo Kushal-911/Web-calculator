@@ -1,0 +1,130 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="calculator-container">
+    <div class="calculator">
+        <div class="display">
+            <div class="history-expression" id="historyExpression"></div>
+            <input type="text" id="display" readonly>
+        </div>
+
+        <div class="mode-switch">
+            <button class="mode-btn active" data-mode="standard">Standard</button>
+            <button class="mode-btn" data-mode="scientific">Scientific</button>
+            <button class="mode-btn" data-mode="conversion">Conversion</button>
+        </div>
+
+        <div class="keypad-container">
+            <!-- Scientific Functions - Better Organized -->
+            <div id="scientific-pad" class="hidden">
+                <div class="scientific-row">
+                    <button class="btn function">sin</button>
+                    <button class="btn function">cos</button>
+                    <button class="btn function">tan</button>
+                    <button class="btn function">asin</button>
+                    <button class="btn function">acos</button>
+                    <button class="btn function">atan</button>
+                </div>
+                <div class="scientific-row">
+                    <button class="btn function">log</button>
+                    <button class="btn function">ln</button>
+                    <button class="btn function">√</button>
+                    <button class="btn function">x²</button>
+                    <button class="btn function">x³</button>
+                    <button class="btn function">xʸ</button>
+                </div>
+                <div class="scientific-row">
+                    <button class="btn function">π</button>
+                    <button class="btn function">e</button>
+                    <button class="btn function">|x|</button>
+                    <button class="btn function">n!</button>
+                    <button class="btn function">mod</button>
+                    <button class="btn function">EE</button>
+                </div>
+            </div>
+
+            <!-- Standard Keypad -->
+            <div id="standard-pad">
+                <div class="keypad-row">
+                    <button class="btn clear">C</button>
+                    <button class="btn backspace">⌫</button>
+                    <button class="btn operator">(</button>
+                    <button class="btn operator">)</button>
+                </div>
+                <div class="keypad-row">
+                    <button class="btn number">7</button>
+                    <button class="btn number">8</button>
+                    <button class="btn number">9</button>
+                    <button class="btn operator">÷</button>
+                </div>
+                <div class="keypad-row">
+                    <button class="btn number">4</button>
+                    <button class="btn number">5</button>
+                    <button class="btn number">6</button>
+                    <button class="btn operator">×</button>
+                </div>
+                <div class="keypad-row">
+                    <button class="btn number">1</button>
+                    <button class="btn number">2</button>
+                    <button class="btn number">3</button>
+                    <button class="btn operator">-</button>
+                </div>
+                <div class="keypad-row">
+                    <button class="btn number">0</button>
+                    <button class="btn number">.</button>
+                    <button class="btn equals">=</button>
+                    <button class="btn operator">+</button>
+                </div>
+            </div>
+
+            <!-- Conversion Panel -->
+            <div id="conversion-panel" class="hidden">
+                <div class="conversion-type">
+                    <select id="conversion-type" class="select-styled">
+                        <option value="length">Length</option>
+                        <option value="weight">Weight</option>
+                        <option value="temperature">Temperature</option>
+                        <option value="time">Time</option>
+                        <option value="volume">Volume</option>
+                        <option value="speed">Speed</option>
+                    </select>
+                </div>
+                <div class="conversion-inputs">
+                    <input type="number" id="from-value" class="input-styled" placeholder="Enter value">
+                    <select id="from-unit" class="select-styled"></select>
+                    <span class="conversion-arrow">→</span>
+                    <select id="to-unit" class="select-styled"></select>
+                    <div id="result" class="conversion-result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced History Panel -->
+    <div class="history-panel">
+        <div class="history-header">
+            <h3>Calculation History</h3>
+            <button id="clear-history" class="btn-clear-history">Clear History</button>
+        </div>
+        <div class="history-tabs">
+            <button class="history-tab active" data-type="all">All</button>
+            <button class="history-tab" data-type="standard">Standard</button>
+            <button class="history-tab" data-type="scientific">Scientific</button>
+            <button class="history-tab" data-type="conversion">Conversions</button>
+        </div>
+        <div class="history-list">
+            {% for calc in history %}
+            <div class="history-item" data-type="{{ calc.type }}">
+                <div class="expression">{{ calc.expression }}</div>
+                <div class="result">= {{ calc.result }}</div>
+                <div class="info">
+                    <span class="type">{{ calc.type }}</span>
+                    <span class="timestamp">{{ calc.timestamp.strftime('%H:%M:%S') }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
